@@ -65,6 +65,7 @@ const GITHUB_USERNAME = 'imcoza';
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const projectsGrid = document.getElementById('projects-grid');
+const pinnedReposFeatured = document.getElementById('pinned-repos-featured');
 const loadingState = document.getElementById('loading');
 const errorState = document.getElementById('error');
 const errorMessage = document.getElementById('error-message');
@@ -474,9 +475,87 @@ function createProjectCard(repo) {
     return card;
 }
 
+// Create featured project card from GitHub repo
+function createFeaturedProjectCard(repo) {
+    const card = document.createElement('div');
+    card.className = 'featured-project-card';
+    
+    // Get icon based on repo language or default
+    const getProjectIcon = (language) => {
+        const iconMap = {
+            'Python': 'fab fa-python',
+            'JavaScript': 'fab fa-js',
+            'TypeScript': 'fab fa-js-square',
+            'Java': 'fab fa-java',
+            'C++': 'fas fa-code',
+            'C': 'fas fa-code',
+            'Go': 'fab fa-go',
+            'Rust': 'fab fa-rust',
+            'PHP': 'fab fa-php',
+            'Ruby': 'fas fa-gem',
+            'Swift': 'fab fa-swift',
+            'Kotlin': 'fab fa-android',
+            'R': 'fas fa-chart-line',
+            'MATLAB': 'fas fa-chart-bar',
+            'Shell': 'fas fa-terminal',
+            'HTML': 'fab fa-html5',
+            'CSS': 'fab fa-css3-alt',
+            'Jupyter Notebook': 'fab fa-python',
+            'Dockerfile': 'fab fa-docker',
+            'Vue': 'fab fa-vuejs',
+            'React': 'fab fa-react',
+            'Angular': 'fab fa-angular'
+        };
+        return iconMap[language] || 'fab fa-github';
+    };
+    
+    const icon = getProjectIcon(repo.language);
+    const description = repo.description || 'No description available.';
+    const stars = repo.stargazers_count || 0;
+    const forks = repo.forks_count || 0;
+    
+    // Get tech tags from topics or language
+    const techTags = [];
+    if (repo.topics && repo.topics.length > 0) {
+        techTags.push(...repo.topics.slice(0, 4)); // Show up to 4 topics
+    }
+    if (repo.language && !techTags.includes(repo.language)) {
+        techTags.push(repo.language);
+    }
+    if (techTags.length === 0) {
+        techTags.push('GitHub');
+    }
+    
+    const techTagsHTML = techTags.map(tag => 
+        `<span class="tech-tag">${tag}</span>`
+    ).join('');
+    
+    card.innerHTML = `
+        <div class="project-icon"><i class="${icon}"></i></div>
+        <h3 class="project-name">
+            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" style="color: var(--text-primary); text-decoration: none;">
+                ${repo.name}
+            </a>
+        </h3>
+        <p class="project-description-text">${description}</p>
+        <div class="project-metric">
+            <span class="metric-badge">${stars}</span>
+            <span class="metric-label">${stars === 1 ? 'Star' : 'Stars'}</span>
+        </div>
+        <div class="project-tech">
+            ${techTagsHTML}
+        </div>
+    `;
+    
+    return card;
+}
+
 // Display projects
 function displayProjects(repos) {
     projectsGrid.innerHTML = '';
+    if (pinnedReposFeatured) {
+        pinnedReposFeatured.innerHTML = '';
+    }
     
     if (repos.length === 0) {
         errorState.style.display = 'block';
@@ -484,11 +563,22 @@ function displayProjects(repos) {
         return;
     }
     
-    // Repos are already sorted (portfolio-tagged first, then by relevance)
-    // Display top projects (configurable via MAX_PROJECTS_DISPLAY)
-    const topRepos = repos.slice(0, MAX_PROJECTS_DISPLAY);
+    // Get repos with portfolio/showcase topics (pinned repos)
+    const pinnedRepos = repos.filter(r => r.isPortfolioTagged);
     
-    topRepos.forEach(repo => {
+    // Display pinned repos as featured project cards
+    if (pinnedRepos.length > 0 && pinnedReposFeatured) {
+        pinnedRepos.forEach(repo => {
+            const featuredCard = createFeaturedProjectCard(repo);
+            pinnedReposFeatured.appendChild(featuredCard);
+        });
+    }
+    
+    // Repos are already sorted (portfolio-tagged first, then by relevance)
+    // Display remaining projects in the grid (excluding pinned repos that are already shown as featured)
+    const remainingRepos = repos.filter(r => !r.isPortfolioTagged).slice(0, MAX_PROJECTS_DISPLAY);
+    
+    remainingRepos.forEach(repo => {
         const card = createProjectCard(repo);
         projectsGrid.appendChild(card);
     });
@@ -499,19 +589,15 @@ function displayProjects(repos) {
     }
     
     // Log filtering info (for debugging)
-    const portfolioTagged = topRepos.filter(r => r.isPortfolioTagged).length;
-    const autoIncluded = topRepos.length - portfolioTagged;
-    
     console.log(`\n========================================`);
     console.log(`📊 PORTFOLIO FILTERING RESULTS`);
     console.log(`========================================`);
     console.log(`Total repos fetched: ${repos.length}`);
-    console.log(`Repos with portfolio/showcase topics: ${portfolioTagged}`);
-    console.log(`Displayed ${topRepos.length} repositories:`);
-    console.log(`  ✅ ${portfolioTagged} portfolio-tagged (always shown)`);
-    console.log(`  🔄 ${autoIncluded} auto-included (matched keywords)`);
+    console.log(`Repos with portfolio/showcase topics: ${pinnedRepos.length}`);
+    console.log(`Displayed ${pinnedRepos.length} pinned repos as featured projects`);
+    console.log(`Displayed ${remainingRepos.length} additional repos in grid`);
     
-    if (portfolioTagged === 0 && ONLY_SHOW_PINNED_REPOS) {
+    if (pinnedRepos.length === 0 && ONLY_SHOW_PINNED_REPOS) {
         console.warn(`\n⚠️  WARNING: No repos found with portfolio/showcase topics!`);
         console.warn(`\n📝 TO FIX THIS:`);
         console.warn(`1. Go to your repository on GitHub`);
@@ -524,7 +610,7 @@ function displayProjects(repos) {
     }
     
     // List all repos with portfolio topics
-    const allPortfolioRepos = repos.filter(r => r.isPortfolioTagged);
+    const allPortfolioRepos = pinnedRepos;
     if (allPortfolioRepos.length > 0) {
         console.log(`\n✅ Repos with portfolio/showcase topics:`);
         allPortfolioRepos.forEach(repo => {

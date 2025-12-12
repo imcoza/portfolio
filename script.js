@@ -58,19 +58,9 @@ const MAX_PROJECTS_DISPLAY = 15;
 // Set to false to show both pinned repos AND auto-included repos
 const ONLY_SHOW_PINNED_REPOS = true;  // Change to false to show auto-included repos too
 
-// GitHub Username (hardcoded)
-const GITHUB_USERNAME = 'imcoza';
-
 // DOM Elements
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
-const projectsGrid = document.getElementById('projects-grid');
-const pinnedReposFeatured = document.getElementById('pinned-repos-featured');
-const loadingState = document.getElementById('loading');
-const errorState = document.getElementById('error');
-const errorMessage = document.getElementById('error-message');
-const viewMoreContainer = document.getElementById('view-more-container');
-const viewMoreGithub = document.getElementById('view-more-github');
 const githubLink = document.getElementById('github-link');
 
 // Mobile Menu Toggle
@@ -314,53 +304,7 @@ async function fetchWithRetry(url, options = {}, retries = 3, delay = 1000) {
     }
 }
 
-// Load projects from GitHub - Fetches all repos and filters based on topics
-async function fetchGitHubRepos(username) {
-    try {
-        const response = await fetchWithRetry(
-            `${GITHUB_API_BASE}/users/${username}/repos?sort=updated&per_page=100&type=all`,
-            {
-                headers: {
-                    'Accept': 'application/vnd.github.mercy-preview+json'
-                }
-            }
-        );
-        
-        const repos = await response.json();
-        
-        console.log(`\n📦 Fetched ${repos.length} repositories from GitHub`);
-        
-        // Fetch topics for repos that don't have them in the initial response
-        // Some repos might already have topics from the API response
-        const reposWithTopics = await Promise.all(
-            repos.map(async (repo) => {
-                // Check if topics are already in the response
-                if (repo.topics && Array.isArray(repo.topics) && repo.topics.length > 0) {
-                    return repo;
-                }
-                // Otherwise fetch topics individually
-                const topics = await fetchRepoTopics(repo);
-                return { ...repo, topics };
-            })
-        );
-        
-        // Log repos with portfolio topics for debugging
-        const portfolioRepos = reposWithTopics.filter(repo => hasPortfolioTopic(repo));
-        console.log(`\n📌 Found ${portfolioRepos.length} repos with portfolio/showcase topics:`);
-        portfolioRepos.forEach(repo => {
-            console.log(`   - ${repo.name} (Topics: ${(repo.topics || []).join(', ') || 'none'})`);
-        });
-        
-        // Apply filtering based on configuration
-        const filteredRepos = filterRelevantRepos(reposWithTopics);
-        
-        console.log(`\n✅ Displaying ${filteredRepos.length} repositories`);
-        
-        return filteredRepos;
-    } catch (error) {
-        throw error;
-    }
-}
+// GitHub repo fetching removed - only stats are loaded now
 
 // Fetch user statistics from GitHub profile
 async function fetchUserStats(username) {
@@ -627,50 +571,7 @@ function displayProjects(repos) {
     console.log(`========================================\n`);
 }
 
-// Load projects function (auto-loads on page load)
-async function loadProjects() {
-    const username = GITHUB_USERNAME;
-    
-    // Hide error, show loading
-    errorState.style.display = 'none';
-    loadingState.style.display = 'block';
-    projectsGrid.innerHTML = '';
-    viewMoreContainer.style.display = 'none';
-    
-    try {
-        // Fetch repositories and stats
-        const [repos, stats] = await Promise.all([
-            fetchGitHubRepos(username),
-            fetchUserStats(username)
-        ]);
-        
-        // Update stats
-        if (stats) {
-            document.getElementById('github-repos').textContent = stats.repos || 0;
-            document.getElementById('github-stars').textContent = stats.stars || 0;
-            document.getElementById('github-contributions').textContent = stats.contributions || 0;
-        }
-        
-        // Update GitHub link (if it exists)
-        if (githubLink) {
-            githubLink.href = `https://github.com/${username}`;
-        }
-        if (viewMoreGithub) {
-            viewMoreGithub.href = `https://github.com/${username}?tab=repositories`;
-        }
-        
-        // Display projects (already filtered by fetchGitHubRepos)
-        displayProjects(repos);
-        
-        // Hide loading
-        loadingState.style.display = 'none';
-        
-    } catch (error) {
-        loadingState.style.display = 'none';
-        errorState.style.display = 'block';
-        errorMessage.textContent = error.message || 'An error occurred while fetching repositories.';
-    }
-}
+// GitHub repo loading function removed - only stats are loaded now
 
 // Contact form removed - using direct contact links instead
 
@@ -700,11 +601,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Auto-load projects on page load
+// Auto-load GitHub stats on page load (without loading repos)
 window.addEventListener('DOMContentLoaded', async () => {
-    // Auto-load after a short delay to ensure page is fully loaded
-    setTimeout(() => {
-        loadProjects();
+    // Update GitHub stats only
+    setTimeout(async () => {
+        try {
+            const stats = await fetchUserStats('imcoza');
+            if (stats) {
+                document.getElementById('github-repos').textContent = stats.repos || 0;
+                document.getElementById('github-stars').textContent = stats.stars || 0;
+                document.getElementById('github-contributions').textContent = stats.contributions || 0;
+            }
+            if (githubLink) {
+                githubLink.href = 'https://github.com/imcoza';
+            }
+        } catch (error) {
+            console.warn('Could not fetch GitHub stats:', error);
+        }
     }, 1000);
 });
 

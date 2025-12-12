@@ -88,29 +88,39 @@
             <div class="about-content">
                 <div class="about-main">
                     <p class="about-lead">
-                        NLP Engineer specializing in Indic LLM development, model optimization, and advanced 
-                        AI techniques. Experienced in knowledge distillation, pruning, reinforcement learning, 
-                        and building production-ready systems with focus on low latency and resource efficiency.
+                        NLP Engineer specializing in Indic LLM development, model optimization, and production ML systems. 
+                        Expert in PEFT methods (LoRA, QLoRA, AdaLoRA), knowledge distillation, model compression, 
+                        and building scalable production-ready AI systems with focus on low latency and cost efficiency.
                     </p>
                     <div class="about-details">
                         <p>
-                            Currently developing Indic language models at Gnani.AI, achieving 36.7% latency 
-                            reduction through fine-tuning and optimization techniques. Previously architected 
-                            Haystack-powered LLM agent pipelines with RAG capabilities at Meroku.
+                            Currently developing production-ready Indic-language SLMs and LLMs (4B-12B parameters) at Gnani.AI, 
+                            achieving 8% and 15% improvement on IFEval benchmark through pruning, model merging, and knowledge 
+                            distillation. Implemented PEFT methods reducing prompt length by 48% and achieving 20% inference 
+                            speed increase while maintaining accuracy.
                         </p>
                         <p>
-                            Expert in reinforcement learning, having fine-tuned FLAN-T5 for toxicity reduction 
-                            using PPO, achieving 38.85% average reduction in toxicity scores. Built interactive 
-                            video communication systems using speech-to-text and LLMs, achieving 60% success 
-                            rate in generating insightful questions.
+                            Enhanced Gemma 27B with function calling capabilities achieving 15% accuracy improvement on BFCL 
+                            benchmark. Built comprehensive ML testing framework with automated regression testing, A/B testing, 
+                            and model versioning. Deployed production models using vLLM with 99.9% uptime.
                         </p>
                     </div>
                 </div>
                 <div class="about-metrics">
                     <div class="metric-card">
+                        <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="metric-value">15%</div>
+                        <div class="metric-label">IFEval Improvement</div>
+                    </div>
+                    <div class="metric-card">
                         <div class="metric-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        <div class="metric-value">36.7%</div>
-                        <div class="metric-label">Latency Reduction</div>
+                        <div class="metric-value">20%</div>
+                        <div class="metric-label">Inference Speed</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon"><i class="fas fa-compress"></i></div>
+                        <div class="metric-value">48%</div>
+                        <div class="metric-label">Prompt Reduction</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-icon"><i class="fas fa-shield-alt"></i></div>
@@ -118,9 +128,9 @@
                         <div class="metric-label">Toxicity Reduction</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
-                        <div class="metric-value">60%</div>
-                        <div class="metric-label">Success Rate</div>
+                        <div class="metric-icon"><i class="fas fa-server"></i></div>
+                        <div class="metric-value">99.9%</div>
+                        <div class="metric-label">Uptime</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-icon"><i class="fas fa-graduation-cap"></i></div>
@@ -146,20 +156,27 @@
                         <div class="timeline-header">
                             <h3 class="timeline-title">NLP Engineer</h3>
                             <span class="timeline-company">Gnani.AI</span>
-                            <span class="timeline-date">Present</span>
+                            <span class="timeline-date">June 2024 - Present</span>
                         </div>
                         <ul class="timeline-description">
-                            <li>Developed Indic LLM models with focus on low latency and resource efficiency</li>
-                            <li>Implemented advanced techniques including knowledge distillation and pruning to optimize model performance</li>
-                            <li>Achieved significant latency reduction of approximately 36.7% through fine-tuning various models</li>
+                            <li>Architected and developed production-ready Indic-language SLMs and LLMs (4B-12B parameters) using pruning, model merging, and knowledge distillation, achieving 8% and 15% improvement on IFEval benchmark</li>
+                            <li>Implemented and compared PEFT methods (LoRA, IA3, AdaLoRA, QLoRA) using HuggingFace PEFT and TRL; reduced prompt length by 48% and achieved 20% inference speed increase while maintaining accuracy through rank-64 adapters and 4-bit quantization</li>
+                            <li>Enhanced Gemma 27B decoder-only transformer LLM with function calling and tool use capabilities using multi-stage SFT; achieved 15% accuracy improvement on BFCL benchmark (45.99% vs 29.8% baseline) and improved multi-turn conversational accuracy to 14.25% vs 11.62% base performance</li>
+                            <li>Developed synthetic dataset preparation pipelines for English and Indic languages using LLM-based data generation and augmentation techniques for preference and multi-turn conversation datasets</li>
+                            <li>Fine-tuned compact transformer models (1B-7B parameters) as routers for query classification using transfer learning and few-shot learning, optimizing latency and inference costs</li>
+                            <li>Built comprehensive ML testing framework with automated regression testing, A/B testing, model versioning (MLflow), and performance monitoring for production AI systems</li>
+                            <li>Deployed production models using vLLM for high-throughput inference serving with continuous batching, PagedAttention, and tensor parallelism, ensuring 99.9% uptime and scalable model serving infrastructure</li>
                         </ul>
                         <div class="timeline-tech">
                             <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">Hugging Face</span>
+                            <span class="tech-tag">HuggingFace</span>
+                            <span class="tech-tag">PEFT (LoRA, QLoRA)</span>
                             <span class="tech-tag">Knowledge Distillation</span>
                             <span class="tech-tag">Model Pruning</span>
+                            <span class="tech-tag">vLLM</span>
+                            <span class="tech-tag">MLOps</span>
+                            <span class="tech-tag">TRL</span>
                             <span class="tech-tag">Indic LLM</span>
-                            <span class="tech-tag">Fine-tuning</span>
                         </div>
                     </div>
                 </div>
@@ -167,20 +184,21 @@
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <h3 class="timeline-title">Artificial Intelligence Engineer</h3>
+                            <h3 class="timeline-title">ML Engineer Intern</h3>
                             <span class="timeline-company">Meroku</span>
-                            <span class="timeline-date">Previous</span>
+                            <span class="timeline-date">March 2024 - May 2024</span>
                         </div>
                         <ul class="timeline-description">
-                            <li>Leveraged expertise in Stable Diffusion to achieve high-fidelity image generation mimicking NFT collections (e.g., Mooncasts, Outcasts)</li>
-                            <li>Architected and maintained a Haystack-powered LLM agent pipeline integrating RAG capabilities with reasoning power of LLMs</li>
+                            <li>Fine-tuned Stable Diffusion latent diffusion models for domain-specific image generation using LoRA-based fine-tuning, prompt engineering (negative prompts, style embeddings), and optimization techniques (gradient checkpointing, mixed precision training) for production deployment</li>
+                            <li>Architected production-grade RAG-powered LLM agent system using Haystack framework, integrating sentence transformers (multi-qa-MiniLM-L6-cos-v1), semantic search (cosine similarity, approximate nearest neighbor search), and document processing (chunking, metadata extraction) to reduce hallucinations and improve factual accuracy</li>
                         </ul>
                         <div class="timeline-tech">
                             <span class="tech-tag">Stable Diffusion</span>
                             <span class="tech-tag">Haystack</span>
                             <span class="tech-tag">RAG</span>
-                            <span class="tech-tag">LLM Agents</span>
+                            <span class="tech-tag">Sentence Transformers</span>
                             <span class="tech-tag">Computer Vision</span>
+                            <span class="tech-tag">LoRA</span>
                         </div>
                     </div>
                 </div>
@@ -200,13 +218,74 @@
             <!-- Featured Projects -->
             <div class="featured-projects">
                 <div class="featured-project-card">
-                    <div class="project-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3 class="project-name">ReTox Hate Hunter</h3>
+                    <div class="project-icon"><i class="fas fa-eye"></i></div>
+                    <h3 class="project-name">SIGMA-VL: Vision-Language Model from Scratch</h3>
                     <p class="project-description-text">
-                        Fine-tuned FLAN-T5 for detoxified text generation using reinforcement learning. 
-                        Leveraged Meta AI's pre-trained "hate speech" reward model while preserving creativity 
-                        and fluency. Employed Proximal Policy Optimization (PPO) to adjust FLAN-T5's parameters 
-                        based on reward signals.
+                        3B parameter VLM with SigLIP vision encoder (27-layer ViT), Gemma language model (18-layer decoder with GQA), 
+                        and multimodal fusion. Implemented RoPE, GQA, RMSNorm, SwiGLU, KV-Cache. Applied QLoRA with 4-bit quantization 
+                        achieving 75% memory reduction. Production FastAPI REST API with Docker and GPU support.
+                    </p>
+                    <div class="project-metric">
+                        <span class="metric-badge">40.00%</span>
+                        <span class="metric-label">VQAv2 Accuracy | BLEU-4: 0.165</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Vision Transformers</span>
+                        <span class="tech-tag">QLoRA</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Computer Vision</span>
+                    </div>
+                </div>
+                
+                <div class="featured-project-card">
+                    <div class="project-icon"><i class="fas fa-search"></i></div>
+                    <h3 class="project-name">NeuralSearch: Hybrid Search Engine with AI Query Intelligence</h3>
+                    <p class="project-description-text">
+                        Hybrid search combining BM25 + semantic search using ensemble embeddings (MiniLM-L6-v2, MPNet-base, BGE-base). 
+                        Query expansion via GPT-OSS-120B, MMR algorithm, and LLM-based intent classification. Production-grade system 
+                        with optimized performance.
+                    </p>
+                    <div class="project-metric">
+                        <span class="metric-badge">50-250ms</span>
+                        <span class="metric-label">Latency | 10-50 req/s throughput</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Vespa</span>
+                        <span class="tech-tag">RAG</span>
+                        <span class="tech-tag">Hybrid Search</span>
+                        <span class="tech-tag">BM25</span>
+                    </div>
+                </div>
+                
+                <div class="featured-project-card">
+                    <div class="project-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3 class="project-name">ArticleForge: Production-Grade NLP/ML System</h3>
+                    <p class="project-description-text">
+                        Production-ready NLP/ML system with TF-IDF vectorization, TextRank extractive summarization (PageRank-inspired), 
+                        Sentence-BERT embeddings (all-MiniLM-L6-v2, 384-dim), and semantic similarity. Comprehensive evaluation using BLEU, 
+                        ROUGE-L (F1: 0.35-0.45), METEOR, and perplexity metrics.
+                    </p>
+                    <div class="project-metric">
+                        <span class="metric-badge">10K words/s</span>
+                        <span class="metric-label">Processing throughput | Spearman >0.80</span>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">TextRank</span>
+                        <span class="tech-tag">Sentence-BERT</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                    </div>
+                </div>
+                
+                <div class="featured-project-card">
+                    <div class="project-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="project-name">ReTox Hate Hunter: RLHF for DeToxified Text Generation</h3>
+                    <p class="project-description-text">
+                        RLHF-based toxicity mitigation fine-tuning FLAN-T5 using Meta AI reward model and PPO algorithm with TRL. 
+                        Achieved significant toxicity reduction while maintaining text quality and fluency through reinforcement learning.
                     </p>
                     <div class="project-metric">
                         <span class="metric-badge">38.85%</span>
@@ -215,29 +294,9 @@
                     <div class="project-tech">
                         <span class="tech-tag">FLAN-T5</span>
                         <span class="tech-tag">PPO</span>
-                        <span class="tech-tag">Reinforcement Learning</span>
-                        <span class="tech-tag">NLP</span>
-                    </div>
-                </div>
-                
-                <div class="featured-project-card">
-                    <div class="project-icon"><i class="fas fa-video"></i></div>
-                    <h3 class="project-name">BiG-IVC: Interactive Video Communication</h3>
-                    <p class="project-description-text">
-                        Novel approach to video interaction using speech-to-text, text processing, and LLMs. 
-                        Empowers users to engage with video content through natural conversation for deeper 
-                        understanding. Integrated Distil Whisper for accurate transcription and Llama 2 7B for 
-                        contextual embedding generation and interactive dialogue.
-                    </p>
-                    <div class="project-metric">
-                        <span class="metric-badge">60%</span>
-                        <span class="metric-label">Success rate in generating insightful questions</span>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">Llama 2</span>
-                        <span class="tech-tag">Distil Whisper</span>
-                        <span class="tech-tag">Speech-to-Text</span>
-                        <span class="tech-tag">LLM</span>
+                        <span class="tech-tag">RLHF</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">TRL</span>
                     </div>
                 </div>
             </div>
@@ -289,44 +348,87 @@
                     <h3><i class="fas fa-code"></i> Programming Languages</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">C++</span>
                         <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">JavaScript</span>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-robot"></i> ML/NLP Frameworks & Libraries</h3>
+                    <h3><i class="fas fa-robot"></i> ML Frameworks & Libraries</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">PyTorch</span>
                         <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">Matplotlib</span>
-                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">HuggingFace Transformers</span>
+                        <span class="skill-tag">Sentence-Transformers</span>
                         <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">XGBoost</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">Haystack</span>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-brain"></i> Technical Skills</h3>
+                    <h3><i class="fas fa-brain"></i> Large Language Models</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Deep Learning</span>
-                        <span class="skill-tag">EDA</span>
-                        <span class="skill-tag">Reinforcement Learning</span>
-                        <span class="skill-tag">NLP</span>
-                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">GPT</span>
+                        <span class="skill-tag">BERT</span>
+                        <span class="skill-tag">T5 / FLAN-T5</span>
+                        <span class="skill-tag">Gemma</span>
+                        <span class="skill-tag">Llama</span>
+                        <span class="skill-tag">Fine-tuning</span>
+                        <span class="skill-tag">SFT</span>
+                        <span class="skill-tag">PEFT (LoRA, IA3, AdaLoRA, QLoRA)</span>
+                        <span class="skill-tag">Instruction Tuning</span>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3><i class="fas fa-user-cog"></i> Soft Skills</h3>
+                    <h3><i class="fas fa-language"></i> NLP & Multimodal AI</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">Problem-Solving</span>
-                        <span class="skill-tag">Research Skills</span>
-                        <span class="skill-tag">Adaptability</span>
-                        <span class="skill-tag">Communication</span>
-                        <span class="skill-tag">Collaboration</span>
-                        <span class="skill-tag">Critical Thinking</span>
+                        <span class="skill-tag">Named Entity Recognition</span>
+                        <span class="skill-tag">Sentiment Analysis</span>
+                        <span class="skill-tag">Text Classification</span>
+                        <span class="skill-tag">Conversational AI</span>
+                        <span class="skill-tag">Multilingual NLP</span>
+                        <span class="skill-tag">Vision-Language Models (VLMs)</span>
+                        <span class="skill-tag">Vision Transformers</span>
+                        <span class="skill-tag">Stable Diffusion</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cogs"></i> ML Techniques</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">RLHF</span>
+                        <span class="skill-tag">DPO</span>
+                        <span class="skill-tag">PPO</span>
+                        <span class="skill-tag">Knowledge Distillation</span>
+                        <span class="skill-tag">Model Pruning</span>
+                        <span class="skill-tag">Quantization</span>
+                        <span class="skill-tag">Model Compression</span>
+                        <span class="skill-tag">Transfer Learning</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> MLOps & Infrastructure</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">vLLM</span>
+                        <span class="skill-tag">Model Serving</span>
+                        <span class="skill-tag">MLOps</span>
+                        <span class="skill-tag">AWS (S3, EC2, SageMaker)</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">A/B Testing</span>
+                        <span class="skill-tag">Model Versioning</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-search"></i> Search & Retrieval</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">Vector Embeddings</span>
+                        <span class="skill-tag">Semantic Search</span>
+                        <span class="skill-tag">BM25</span>
+                        <span class="skill-tag">Hybrid Search</span>
+                        <span class="skill-tag">Information Retrieval</span>
                     </div>
                 </div>
             </div>
@@ -345,7 +447,7 @@
                     <div class="education-icon"><i class="fas fa-graduation-cap"></i></div>
                     <h3 class="education-degree">Bachelor of Technology (Computer Science)</h3>
                     <p class="education-school">University of Allahabad</p>
-                    <p class="education-details">GPA: 8.9</p>
+                    <p class="education-details">2020 - 2024 | GPA: 8.9/10.0</p>
                     <p class="education-details">Relevant coursework: Machine Learning, Artificial Intelligence, Deep Learning, Data Structures and Algorithms, Operating Systems, Computer Networks, Software Engineering</p>
                 </div>
             </div>
@@ -353,23 +455,17 @@
                 <h3 class="certifications-title">Professional Certifications</h3>
                 <div class="cert-grid">
                     <div class="cert-item">
-                        <i class="fab fa-google"></i>
-                        <div>
-                            <h4>Google Data Analytics Certificate</h4>
-                        </div>
-                    </div>
-                    <div class="cert-item">
                         <i class="fas fa-brain"></i>
                         <div>
-                            <h4>Generative AI with LLMs</h4>
-                            <span class="cert-org">DeepLearning.AI & Amazon Web Services</span>
+                            <h4>Generative AI with Large Language Models</h4>
+                            <span class="cert-org">DeepLearning.AI and AWS</span>
                         </div>
                     </div>
                     <div class="cert-item">
                         <i class="fas fa-certificate"></i>
                         <div>
                             <h4>Deep Learning Specialization</h4>
-                            <span class="cert-org">Stanford University & DeepLearning.AI</span>
+                            <span class="cert-org">Stanford University and DeepLearning.AI</span>
                         </div>
                     </div>
                 </div>
